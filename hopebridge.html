@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hope Bridge - Your Community Donation Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background-color: #fd7e14;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Search Section */
+        .search-section {
+            background: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .search-container {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            min-width: 250px;
+        }
+
+        .location-input {
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            min-width: 200px;
+        }
+
+        .category-select {
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            min-width: 150px;
+        }
+
+        .search-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .search-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .category-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Featured Listings */
+        .featured {
+            padding: 3rem 0;
+            background: white;
+        }
+
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .listing-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .listing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .listing-card:active {
+            transform: scale(0.98);
+        }
+
+        .listing-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #f0f2f5, #e4e9f0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #aaa;
+        }
+
+        .listing-content {
+            padding: 1.5rem;
+        }
+
+        .listing-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .listing-condition {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            background-color: #e8f5e8;
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        .listing-location {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .listing-description {
+            color: #777;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .listing-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 3rem 0;
+            background: #f8f9fa;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .step p {
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #555;
+            color: #ccc;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            animation: slideIn 0.3s;
+        }
+
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 0.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        /* Loading animation for search */
+        .search-btn.loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .search-btn.loading::after {
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            margin-left: 8px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .search-input,
+            .location-input,
+            .category-select {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .listings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { 
+            text-align: center; 
+        }
+
+        .mt-2 { 
+            margin-top: 1rem; 
+        }
+
+        .mb-2 { 
+            margin-bottom: 1rem; 
+        }
+
+        .hidden { 
+            display: none; 
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Hope Bridge</a>
+            <ul class="nav-links">
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#featured">Featured</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-secondary" onclick="openModal('loginModal')">Login</a>
+                <a href="#" class="btn btn-primary" onclick="openModal('signupModal')">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Share & Care Locally</h1>
+            <p>Connect with your community through giving. Donate items you no longer need and find treasures from your neighbors - all for free!</p>
+            <a href="#" class="btn btn-primary" onclick="openModal('postModal')">Donate an Item</a>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="What are you looking for?" id="searchInput">
+                <input type="text" class="location-input" placeholder="Location..." id="locationInput">
+                <select class="category-select" id="categorySelect">
+                    <option value="">All Categories</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="furniture">Furniture</option>
+                    <option value="vehicles">Vehicles</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="books">Books</option>
+                    <option value="sports">Sports & Recreation</option>
+                    <option value="home">Home & Garden</option>
+                    <option value="services">Services</option>
+                </select>
+                <button class="search-btn" onclick="performSearchWithLoading()">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <h2 class="section-title">Browse Categories</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="filterByCategory('electronics')">
+                    <div class="category-icon">📱</div>
+                    <h3>Electronics</h3>
+                    <p>Phones, laptops, gadgets</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('furniture')">
+                    <div class="category-icon">🪑</div>
+                    <h3>Furniture</h3>
+                    <p>Tables, chairs, sofas</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('vehicles')">
+                    <div class="category-icon">🚗</div>
+                    <h3>Vehicles</h3>
+                    <p>Cars, bikes, motorcycles</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('clothing')">
+                    <div class="category-icon">👕</div>
+                    <h3>Clothing</h3>
+                    <p>Fashion, accessories</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('books')">
+                    <div class="category-icon">📚</div>
+                    <h3>Books</h3>
+                    <p>Textbooks, novels, comics</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('sports')">
+                    <div class="category-icon">⚽</div>
+                    <h3>Sports</h3>
+                    <p>Equipment, gear, fitness</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('home')">
+                    <div class="category-icon">🏠</div>
+                    <h3>Home & Garden</h3>
+                    <p>Tools, plants, decor</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('services')">
+                    <div class="category-icon">🔧</div>
+                    <h3>Services</h3>
+                    <p>Tutoring, help, volunteering</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Listings -->
+    <section class="featured" id="featured">
+        <div class="container">
+            <h2 class="section-title">Available Donations</h2>
+            <div class="listings-grid" id="listingsGrid">
+                <!-- Listings will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Browse & Search</h3>
+                    <p>Find items people are generously donating in your community with our search tools.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Connect Locally</h3>
+                    <p>Contact donors directly and arrange pickup times that work for both of you.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Give & Receive</h3>
+                    <p>Complete your donation exchange and help build a more caring community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hope Bridge</h3>
+                    <p>Your trusted community donation platform connecting neighbors through generosity and care.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Donation Tips</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Furniture</a></li>
+                        <li><a href="#">Vehicles</a></li>
+                        <li><a href="#">Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Report an Issue</a></li>
+                        <li><a href="#">Community Guidelines</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Hope Bridge. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signupModal')">&times;</span>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label for="signupName">Full Name:</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email:</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password:</label>
+                    <input type="password" id="signupPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupLocation">Location:</label>
+                    <input type="text" id="signupLocation" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Post Item Modal -->
+    <div id="postModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('postModal')">&times;</span>
+            <h2>Donate an Item</h2>
+            <form onsubmit="handlePostItem(event)">
+                <div class="form-group">
+                    <label for="itemTitle">Item Title:</label>
+                    <input type="text" id="itemTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="itemCondition">Condition:</label>
+                    <select id="itemCondition" required>
+                        <option value="">Select Condition</option>
+                        <option value="Like New">Like New</option>
+                        <option value="Good">Good</option>
+                        <option value="Fair">Fair</option>
+                        <option value="Needs Repair">Needs Repair</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="itemCategory">Category:</label>
+                    <select id="itemCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="furniture">Furniture</option>
+                        <option value="vehicles">Vehicles</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="books">Books</option>
+                        <option value="sports">Sports & Recreation</option>
+                        <option value="home">Home & Garden</option>
+                        <option value="services">Services</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="itemDescription">Description:</label>
+                    <textarea id="itemDescription" placeholder="Describe the item and why you're donating it..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="itemLocation">Location:</label>
+                    <input type="text" id="itemLocation" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Post Donation</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for donations
+        let listings = [
+            {
+                id: 1,
+                title: "iPhone 13 Pro - Excellent Condition",
+                condition: "Like New",
+                category: "electronics",
+                description: "Upgrading to a new phone. This iPhone 13 Pro is in excellent condition and includes original box and accessories.",
+                location: "Downtown",
+                donor: "John D.",
+                posted: "2 days ago"
+            },
+            {
+                id: 2,
+                title: "Vintage Leather Sofa - Brown",
+                condition: "Good",
+                category: "furniture",
+                description: "Moving to a smaller place. This beautiful vintage leather sofa has been well-maintained and is very comfortable.",
+                location: "Westside",
+                donor: "Sarah M.",
+                posted: "1 week ago"
+            },
+            {
+                id: 3,
+                title: "Mountain Bike - Trek 2021",
+                condition: "Good",
+                category: "sports",
+                description: "My son outgrew this bike. Well-maintained Trek mountain bike, perfect for trails and city riding.",
+                location: "North Hills",
+                donor: "Mike R.",
+                posted: "3 days ago"
+            },
+            {
+                id: 4,
+                title: "Gaming Setup - Complete",
+                condition: "Like New",
+                category: "electronics",
+                description: "Moving overseas and can't take this with me. Complete gaming setup with high-end PC, monitor, keyboard, and mouse.",
+                location: "University Area",
+                donor: "Alex K.",
+                posted: "5 days ago"
+            },
+            {
+                id: 5,
+                title: "Dining Table Set - 6 Chairs",
+                condition: "Good",
+                category: "furniture",
+                description: "Downsizing our home. Solid wood dining table with 6 matching chairs, great for family dinners.",
+                location: "Suburbs",
+                donor: "Lisa P.",
+                posted: "1 day ago"
+            },
+            {
+                id: 6,
+                title: "Free Tutoring - Math & Science",
+                condition: "Available",
+                category: "services",
+                description: "Offering free tutoring sessions for high school students in math and science. 20+ years teaching experience.",
+                location: "City Center",
+                donor: "David L.",
+                posted: "4 days ago"
+            }
+        ];
+
+        // Current user state
+        let currentUser = null;
+        let filteredListings = [...listings];
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            displayListings(filteredListings);
+            initializeInteractivity();
+            setupEventListeners();
+        });
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // Authentication functions
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Simulate login
+            if (email && password) {
+                currentUser = { email: email, name: 'User' };
+                alert('Login successful!');
+                closeModal('loginModal');
+                updateAuthButtons();
+                
+                // Clear form
+                document.getElementById('loginEmail').value = '';
+                document.getElementById('loginPassword').value = '';
+            }
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const location = document.getElementById('signupLocation').value;
+            
+            // Simulate signup
+            if (name && email && password && location) {
+                currentUser = { email: email, name: name, location: location };
+                alert('Account created successfully!');
+                closeModal('signupModal');
+                updateAuthButtons();
+                
+                // Clear form
+                document.getElementById('signupName').value = '';
+                document.getElementById('signupEmail').value = '';
+                document.getElementById('signupPassword').value = '';
+                document.getElementById('signupLocation').value = '';
+            }
+        }
+
+        function updateAuthButtons() {
+            const authButtons = document.querySelector('.auth-buttons');
+            if (currentUser) {
+                authButtons.innerHTML = `
+                    <span>Welcome, ${currentUser.name}!</span>
+                    <a href="#" class="btn btn-secondary" onclick="logout()">Logout</a>
+                `;
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            location.reload();
+        }
+
+        // Post item function
+        function handlePostItem(event) {
+            event.preventDefault();
+            
+            if (!currentUser) {
+                alert('Please login to donate an item.');
+                closeModal('postModal');
+                openModal('loginModal');
+                return;
+            }
+
+            const title = document.getElementById('itemTitle').value;
+            const condition = document.getElementById('itemCondition').value;
+            const category = document.getElementById('itemCategory').value;
+            const description = document.getElementById('itemDescription').value;
+            const location = document.getElementById('itemLocation').value;
+
+            const newListing = {
+                id: listings.length + 1,
+                title: title,
+                condition: condition,
+                category: category,
+                description: description,
+                location: location,
+                donor: currentUser.name,
+                posted: 'Just now'
+            };
+
+            listings.unshift(newListing);
+            filteredListings = [...listings];
+            displayListings(filteredListings);
+            closeModal('postModal');
+            alert('Item donated successfully! Thank you for your generosity!');
+            
+            // Reset form
+            document.getElementById('itemTitle').value = '';
+            document.getElementById('itemCondition').value = '';
+            document.getElementById('itemCategory').value = '';
+            document.getElementById('itemDescription').value = '';
+            document.getElementById('itemLocation').value = '';
+        }
+
+        // Search and filter functions
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const location = document.getElementById('locationInput').value.toLowerCase();
+            const category = document.getElementById('categorySelect').value;
+
+            filteredListings = listings.filter(listing => {
+                const matchesSearch = !searchTerm || 
+                    listing.title.toLowerCase().includes(searchTerm) ||
+                    listing.description.toLowerCase().includes(searchTerm);
+                
+                const matchesLocation = !location || 
+                    listing.location.toLowerCase().includes(location);
+                
+                const matchesCategory = !category || listing.category === category;
+
+                return matchesSearch && matchesLocation && matchesCategory;
+            });
+
+            displayListings(filteredListings);
+        }
+
+        function filterByCategory(category) {
+            document.getElementById('categorySelect').value = category;
+            performSearch();
+            document.getElementById('featured').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Display listings function
+        function displayListings(listingsToShow) {
+            const grid = document.getElementById('listingsGrid');
+            
+            if (listingsToShow.length === 0) {
+                grid.innerHTML = '<p class="text-center">No donations found matching your criteria.</p>';
+                return;
+            }
+
+            grid.innerHTML = listingsToShow.map(listing => `
+                <div class="listing-card" onclick="viewListing(${listing.id})">
+                    <div class="listing-image">
+                        ${getCategoryIcon(listing.category)}
+                    </div>
+                    <div class="listing-content">
+                        <div class="listing-title">${listing.title}</div>
+                        <div class="listing-condition">${listing.condition}</div>
+                        <div class="listing-location">📍 ${listing.location}</div>
+                        <div class="listing-description">${listing.description.substring(0, 100)}${listing.description.length > 100 ? '...' : ''}</div>
+                        <div class="listing-meta">
+                            <span>By ${listing.donor}</span>
+                            <span>${listing.posted}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getCategoryIcon(category) {
+            const icons = {
+                electronics: '📱',
+                furniture: '🪑',
+                vehicles: '🚗',
+                clothing: '👕',
+                books: '📚',
+                sports: '⚽',
+                home: '🏠',
+                services: '🔧'
+            };
+            return icons[category] || '🎁';
+        }
+
+        function viewListing(id) {
+            const listing = listings.find(l => l.id === id);
+            if (listing) {
+                alert(`${listing.title}\n\nCondition: ${listing.condition}\nLocation: ${listing.location}\n\nDescription: ${listing.description}\n\nDonor: ${listing.donor}\nPosted: ${listing.posted}\n\nContact the donor to arrange pickup!`);
+            }
+        }
+
+        // Enhanced search with loading state
+        function performSearchWithLoading() {
+            const searchBtn = document.querySelector('.search-btn');
+            searchBtn.classList.add('loading');
+            searchBtn.textContent = 'Searching';
+            
+            // Simulate search delay
+            setTimeout(() => {
+                performSearch();
+                searchBtn.classList.remove('loading');
+                searchBtn.textContent = 'Search';
+            }, 500);
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Search on Enter key
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearchWithLoading();
+                }
+            });
+
+            document.getElementById('locationInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearchWithLoading();
+                }
+            });
+
+            // Auto-search on category change
+            document.getElementById('categorySelect').addEventListener('change', performSearch);
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Initialize interactive elements
+        function initializeInteractivity() {
+            // Add hover effects to category cards
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Add click animation to buttons
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255,255,255,0.3)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.left = e.offsetX + 'px';
+                    ripple.style.top = e.offsetY + 'px';
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        }
+
+        // Additional utility functions
+        function addToWishlist(listingId) {
+            if (!currentUser) {
+                alert('Please login to add to wishlist.');
+                return;
+            }
+            alert('Added to wishlist!');
+        }
+
+        function contactDonor(listingId) {
+            if (!currentUser) {
+                alert('Please login to contact donors.');
+                return;
+            }
+            alert('Opening chat with donor...');
+        }
+
+        // Sort listings function
+        function sortListings(criteria) {
+            switch (criteria) {
+                case 'condition-best':
+                    filteredListings.sort((a, b) => {
+                        const conditionOrder = { 'Like New': 4, 'Good': 3, 'Fair': 2, 'Needs Repair': 1, 'Available': 3 };
+                        return (conditionOrder[b.condition] || 0) - (conditionOrder[a.condition] || 0);
+                    });
+                    break;
+                case 'newest':
+                    filteredListings.sort((a, b) => {
+                        if (a.posted === 'Just now') return -1;
+                        if (b.posted === 'Just now') return 1;
+                        return 0;
+                    });
+                    break;
+                case 'oldest':
+                    filteredListings.sort((a, b) => {
+                        if (a.posted === 'Just now') return 1;
+                        if (b.posted === 'Just now') return -1;
+                        return 0;
+                    });
+                    break;
+                default:
+                    // Default sorting by newest
+                    break;
+            }
+            displayListings(filteredListings);
+        }
+
+        // Clear all filters
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('locationInput').value = '';
+            document.getElementById('categorySelect').value = '';
+            filteredListings = [...listings];
+            displayListings(filteredListings);
+        }
+
+        // Handle window resize for responsive design
+        window.addEventListener('resize', function() {
+            // Adjust layout if needed for responsive design
+            const nav = document.querySelector('nav');
+            if (window.innerWidth <= 768) {
+                nav.classList.add('mobile');
+            } else {
+                nav.classList.remove('mobile');
+            }
+        });
+
+        // Initialize responsive check
+        window.addEventListener('load', function() {
+            if (window.innerWidth <= 768) {
+                document.querySelector('nav').classList.add('mobile');
+            }
+        });
+    </script>
+</body>
+</html>
